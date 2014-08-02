@@ -1,24 +1,24 @@
 import QtQuick 1.1
 
 Rectangle {
-	id: container
+    id: container
 
-	width: 76
-	height: 6
-	color: "#00000000"
+    width: 76
+    height: 6
+    color: "#00000000"
 
-	property variant items: [p1, p2, p3, p4, p5, p6, p7, p8]
-	
-	function setProgress(progress) {
-		for (var i = 0; i < items.length; i++) {
-			if (i+1 <= progress)
-				items[i].opacity = 0.8
-			else
-				items[i].opacity = 0.3		
-		}
-	}
+    property variant items: [p1, p2, p3, p4, p5, p6, p7, p8]
+    
+    function setProgress(progress) {
+        for (var i = 0; i < items.length; i++) {
+            if (i+1 <= progress)
+                items[i].opacity = 0.8
+            else
+                items[i].opacity = 0.3        
+        }
+    }
 
-	Rectangle {
+    Rectangle {
         id: p1
         x: 0
         y: 0
@@ -27,7 +27,7 @@ Rectangle {
         radius: 3
         color: "#ffffff"
         opacity: 0.3
-	    Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
+        Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
     }
 
     Rectangle {
@@ -39,7 +39,7 @@ Rectangle {
         radius: p1.radius
         color: p1.color
         opacity: 0.3
-	    Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
+        Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
     }
 
     Rectangle {
@@ -51,7 +51,7 @@ Rectangle {
         radius: p1.radius
         color: p1.color
         opacity: 0.3
-	    Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
+        Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
     }
 
     Rectangle {
@@ -63,7 +63,7 @@ Rectangle {
         radius: p1.radius
         color: p1.color
         opacity: 0.3
-	    Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
+        Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
     }
 
     Rectangle {
@@ -75,7 +75,7 @@ Rectangle {
         radius: p1.radius
         color: p1.color
         opacity: 0.3
-	    Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
+        Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
     }
 
     Rectangle {
@@ -87,7 +87,7 @@ Rectangle {
         radius: p1.radius
         color: p1.color
         opacity: 0.3
-	    Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
+        Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
     }
 
     Rectangle {
@@ -99,7 +99,7 @@ Rectangle {
         radius: p1.radius
         color: p1.color
         opacity: 0.3
-	    Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
+        Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
     }
 
     Rectangle {
@@ -111,7 +111,6 @@ Rectangle {
         radius: p1.radius
         color: p1.color
         opacity: 0.3
-	    Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
+        Behavior on opacity { SmoothedAnimation { velocity: 0.5; } }
     }
-
 }
