@@ -35,6 +35,9 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
         self.setWindowTitle(APP_TITLE)
         self.setSource(QtCore.QUrl.fromLocalFile(APP_QML_PATH))
         self.setResizeMode(QtDeclarative.QDeclarativeView.SizeRootObjectToView)
+        screen = QtGui.QDesktopWidget().screenGeometry()
+        self.move((screen.width() / 2) - (self.frameSize().width() / 2), \
+        	(screen.height() / 2) - (self.frameSize().height() / 2)) 
 
         # QML signal binding
         self.root = self.rootObject()
@@ -58,6 +61,7 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
 
         # Show!
         self.show()
+        self.raise_()
         self.app.exec_()
 
     def closeEvent(self, event):
