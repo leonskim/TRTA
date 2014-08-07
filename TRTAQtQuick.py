@@ -3,6 +3,7 @@ import math
 import Queue
 from PySide import QtCore, QtGui, QtDeclarative
 import Timer
+import Notification
 
 # Basic environment
 APP_TITLE 				= "Tomato, rather than Apple"
@@ -32,12 +33,17 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
         # Message queue
         self.queue = Queue.Queue()
 
+        # Main GUI
         self.setWindowTitle(APP_TITLE)
         self.setSource(QtCore.QUrl.fromLocalFile(APP_QML_PATH))
         self.setResizeMode(QtDeclarative.QDeclarativeView.SizeRootObjectToView)
         screen = QtGui.QDesktopWidget().screenGeometry()
         self.move((screen.width() / 2) - (self.frameSize().width() / 2), \
         	(screen.height() / 2) - (self.frameSize().height() / 2)) 
+
+        # Notification GUI
+        self.notification = Notification.Notification()
+        self.notification.notify("Welcome!")
 
         # QML signal binding
         self.root = self.rootObject()
@@ -69,6 +75,7 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
             self.tickGenerator.finish()
         if not (self.tickFetcher is None) and self.tickFetcher.isAlive():
             self.tickFetcher.finish()
+        self.notification.close()
 
     @QtCore.Slot()    
     def start(self):
@@ -103,18 +110,21 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
         # 1. Pause timer (in order to play the gauge animation)
         self.tickGenerator.pause(True)
 
-        # 2. Finished?
+        # 2. Notify
+        self.notify(phase)
+
+        # 3. Finished?
         if phase == Timer.PHASE_FINISHED:
             self.tickGenerator = None
             self.sig_set_start_button_text.emit(STR_BTN_START)
 
-        # 3. Set progress
+        # 4. Set progress
         self.sig_set_progress.emit(progress)
 
-        # 4. Set phase (set text and run animation)
+        # 5. Set phase (set text and run animation)
         self.sig_set_phase.emit(phase)
 
-        # 5. Resume timer (noting to do here though)
+        # 6. Resume timer (noting to do here though)
         # When the gauge animation is completed, gaugeAniFinished() will be called.
 
     def setTime(self, time):
@@ -126,8 +136,18 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
             self.sig_move_gauge.emit(-1)
 
     def notify(self, notify_msg):
-        # TODO: show message(phase) on the screen and play sound
-        pass
+        if notify_msg == Timer.PHASE_WORK:
+            msg = "It's time to work!"
+        elif notify_msg == Timer.PHASE_BREAK:
+            msg = "Break time!"
+        elif notify_msg == Timer.PHASE_LONGBREAK:
+            msg = "Long break time!"
+        elif notify_msg == Timer.PHASE_FINISHED:
+            msg = "Good job!"
+        else:
+            msg = notify_msg
+
+        self.notification.notify(msg)
 
     def tickFetcherFunc(self, message):
         if message.type == Timer.MSG_TYPE_TIME:
