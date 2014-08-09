@@ -1,8 +1,8 @@
 from PySide import QtCore, QtGui, QtDeclarative
 
 # Basic environment
-APP_NOTIFICATION_QML_PATH = "./qml/Notification.qml"
-
+APP_NOTIFICATION_QML_PATH   = "./qml/Notification.qml"
+SOUND_PATH                  = "./wav/notify.wav"
 
 class Notification(QtDeclarative.QDeclarativeView):
 
@@ -31,10 +31,20 @@ class Notification(QtDeclarative.QDeclarativeView):
         self.setFixedSize(screen.width(), (screen.height() / 5))
         self.sig_set_size.emit(screen.width(), (screen.height() / 5))
 
+        # Sound (default: ON)
+        self.is_sound_enabled = True
+
         # Show!
         self.show()
 
     def notify(self, notify_msg):
         self.sig_set_text.emit(notify_msg)
+        if self.is_sound_enabled:
+            QtGui.QSound.play(SOUND_PATH) # Qt provides a simple audio(WAV) player. So simple!
+
+    @QtCore.Slot(bool)
+    def setSoundEnable(self, is_enabled):
+        self.is_sound_enabled = is_enabled
+
 
 

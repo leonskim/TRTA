@@ -50,6 +50,23 @@ Rectangle {
         buttonOpacityAni.running = true
     }
 
+    function speaker_opacity_ani(from, to, duration) {
+        speakerOpacityAni.from = from
+        speakerOpacityAni.to = to
+        speakerOpacityAni.duration = duration
+        speakerOpacityAni.running = true
+    }
+
+    PropertyAnimation {
+        id: speakerOpacityAni
+        target: speaker
+        property: "opacity"
+        from: 0.0
+        to: 0.7
+        duration: 500
+        easing.type: Easing.OutQuad
+    }
+
     PropertyAnimation {
         id: buttonOpacityAni
         targets: [btn_start, btn_reset]
@@ -87,8 +104,9 @@ Rectangle {
                 btn_reset.is_clickable = true
 
                 if (btn_start.opacity == 0) { 
-                    // Button Animation No.1 (When the Application is started)
+                    // Button Animation No.1 & Speaker Animation (When the application is started)
                     button_opacity_ani(0.0, 1.0, 500) 
+                    speaker_opacity_ani(0.0, 0.7, 500)
                 } else {
                     // Button Animation No.3 (When the guage stops)
                     button_opacity_ani(0.6, 1.0, 300) 
@@ -170,6 +188,14 @@ Rectangle {
         width: 149
         height: 40
         text: "Reset"
+        opacity: 0.0
+    }
+
+    Speaker {
+        id: speaker 
+        objectName: "speaker"
+        x: 10
+        y: 250
         opacity: 0.0
     }
 }
