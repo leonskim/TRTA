@@ -44,6 +44,7 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
         self.setWindowTitle(APP_TITLE)
         self.setSource(QtCore.QUrl.fromLocalFile(os.path.join(self.basedir, APP_QML_PATH)))
         self.setResizeMode(QtDeclarative.QDeclarativeView.SizeRootObjectToView)
+        self.setFixedSize(self.size())
         screen = QtGui.QDesktopWidget().screenGeometry()
         self.move((screen.width() / 2) - (self.frameSize().width() / 2), \
             (screen.height() / 2) - (self.frameSize().height() / 2))
