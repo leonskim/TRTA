@@ -15,7 +15,9 @@ class Notification(QtDeclarative.QDeclarativeView):
         self.setResizeMode(QtDeclarative.QDeclarativeView.SizeRootObjectToView)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.setStyleSheet("background:transparent")
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint | \
+            QtCore.Qt.WindowStaysOnTopHint | \
+            QtCore.Qt.Tool)
         self.viewport().setAutoFillBackground(False)
 
         # QML signal binding
