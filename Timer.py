@@ -13,8 +13,8 @@ import Queue
 from collections import namedtuple
 
 # Thread duration
-THREAD_SLEEP        = .1
-#THREAD_SLEEP       = .001 # For testing
+#THREAD_SLEEP        = .1
+THREAD_SLEEP       = .001 # For testing
 
 # Message format
 Message = namedtuple("message", "type value1 value2")

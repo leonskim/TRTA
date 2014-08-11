@@ -1,4 +1,5 @@
 import sys
+import os
 import math
 import Queue
 from PySide import QtCore, QtGui, QtDeclarative
@@ -7,7 +8,7 @@ import Notification
 
 # Basic environment
 APP_TITLE               = "Tomato, rather than Apple"
-APP_QML_PATH            = "./qml/TRTA.qml"
+APP_QML_PATH            = os.path.join("qml", "TRTA.qml")
 
 # Strings
 STR_BTN_START           = "Start"
@@ -30,12 +31,18 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
         self.app = QtGui.QApplication(sys.argv)
         super(TRTAQtQuick, self).__init__(parent)
 
+        # Environment
+        if getattr(sys, 'frozen', False):
+            self.basedir = sys._MEIPASS
+        else:
+            self.basedir = os.path.dirname(__file__)
+
         # Message queue
         self.queue = Queue.Queue()
 
         # Main GUI
         self.setWindowTitle(APP_TITLE)
-        self.setSource(QtCore.QUrl.fromLocalFile(APP_QML_PATH))
+        self.setSource(QtCore.QUrl.fromLocalFile(os.path.join(self.basedir, APP_QML_PATH)))
         self.setResizeMode(QtDeclarative.QDeclarativeView.SizeRootObjectToView)
         screen = QtGui.QDesktopWidget().screenGeometry()
         self.move((screen.width() / 2) - (self.frameSize().width() / 2), \
