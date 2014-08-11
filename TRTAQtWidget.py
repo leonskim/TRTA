@@ -6,19 +6,19 @@ from PySide import QtCore, QtGui
 import Timer
 
 # Basic environment
-APP_TITLE 				= "Tomato, rather than Apple"
-APP_GUI_STYLE 			= "plastique"
+APP_TITLE           = "Tomato, rather than Apple"
+APP_GUI_STYLE       = "plastique"
 
 # Strings
-STR_BTN_START 			= "Start"
-STR_BTN_PAUSE 			= "Pause"
-STR_BTN_RESET 			= "Reset"
-STR_BTN_EXIT 			= "Exit"
-STR_TIME_ZERO 			= "0:00:00"
-STR_PHASE_READY 		= "Ready"
-STR_PHASE_WORK 			= "Work"
-STR_PHASE_BREAK 		= "Break"
-STR_PHASE_LONGBREAK 	= "Long break"
+STR_BTN_START       = "Start"
+STR_BTN_PAUSE       = "Pause"
+STR_BTN_RESET       = "Reset"
+STR_BTN_EXIT        = "Exit"
+STR_TIME_ZERO       = "0:00:00"
+STR_PHASE_READY     = "Ready"
+STR_PHASE_WORK      = "Work"
+STR_PHASE_BREAK     = "Break"
+STR_PHASE_LONGBREAK = "Long break"
 
 
 class TRTAQtWidget(QtGui.QDialog):
@@ -95,7 +95,7 @@ class TRTAQtWidget(QtGui.QDialog):
             self.tickGenerator = Timer.TickGenerator(self.queue)
             self.tickGenerator.start()
 
-        if self.start_button.text() == STR_BTN_START: 
+        if self.start_button.text() == STR_BTN_START:
             self.tickGenerator.pause(False)
             self.start_button.setText(STR_BTN_PAUSE)
         else:

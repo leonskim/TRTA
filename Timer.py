@@ -1,7 +1,7 @@
 '''
  There are two classes in this file and both are threads
 
- 1. TickGenerator 
+ 1. TickGenerator
  2. TickFetcher
 '''
 
@@ -13,15 +13,15 @@ import Queue
 from collections import namedtuple
 
 # Thread duration
-THREAD_SLEEP 				= .1
-#THREAD_SLEEP 				= .001 # For testing
+THREAD_SLEEP        = .1
+#THREAD_SLEEP       = .001 # For testing
 
 # Message format
 Message = namedtuple("message", "type value1 value2")
 
 # Message types
-MSG_TYPE_TIME 				= 0
-MSG_TYPE_PHASE 				= 1
+MSG_TYPE_TIME       = 0
+MSG_TYPE_PHASE      = 1
 
 # Phases (for one pomodori)
 '''
@@ -30,12 +30,12 @@ MSG_TYPE_PHASE 				= 1
     Phase3: work
     Phase4: break
     ...
-    Phase8: long_break 
+    Phase8: long_break
 '''
-PHASE_WORK 					= "w" # This string value means nothing. Only for the dictionary.
-PHASE_BREAK 				= "b" # Same
-PHASE_LONGBREAK 			= "l" # Same
-PHASE_FINISHED 				= "f" # duh.
+PHASE_WORK          = "w" # This string value means nothing. Only for the dictionary.
+PHASE_BREAK         = "b" # Same
+PHASE_LONGBREAK     = "l" # Same
+PHASE_FINISHED      = "f" # duh.
 PHASES = {PHASE_WORK: 25, PHASE_BREAK: 5, PHASE_LONGBREAK: 15}
 
 
@@ -45,10 +45,10 @@ class TickGenerator(threading.Thread):
         threading.Thread.__init__(self)
         self.queue = queue
         # Defines the thread is running or paused (Event.set() or Event.clear())
-        self._running = threading.Event() 
+        self._running = threading.Event()
         # Let's try simple bool type variable instead of threading.Event() object.
         # But it's not wrong but also NOT really safe!
-        self._finished = False 
+        self._finished = False
 
     def run(self):
         try:
@@ -66,7 +66,7 @@ class TickGenerator(threading.Thread):
         for current_phase in range(1, 9):
             mins = 0
 
-            # Odd numbers: work 
+            # Odd numbers: work
             # Even numbers: break or long break
             if current_phase % 2 != 0:
                 mins = PHASES[PHASE_WORK]
@@ -154,5 +154,5 @@ class TickFetcher(threading.Thread):
             time.sleep(THREAD_SLEEP)
 
     def finish(self):
-        self._finished = True 
+        self._finished = True
         self.join(1)

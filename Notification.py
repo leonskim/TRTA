@@ -24,8 +24,8 @@ class Notification(QtDeclarative.QDeclarativeView):
         self.sig_set_text.connect(self.root.setText)
 
         # Position
-        # 	Since it's impossible to know the screen size and position in QML(QtQuick1.1),
-        #	Python should change it for the notification area and let QML know the size.
+        #   Since it's impossible to know the screen size and position in QML(QtQuick1.1),
+        #   Python should change it for the notification area and let QML know the size.
         self.move(0, 0)
         screen = QtGui.QDesktopWidget().screenGeometry()
         self.setFixedSize(screen.width(), (screen.height() / 5))

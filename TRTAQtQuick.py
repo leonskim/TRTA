@@ -6,17 +6,17 @@ import Timer
 import Notification
 
 # Basic environment
-APP_TITLE 				= "Tomato, rather than Apple"
-APP_QML_PATH 			= "./qml/TRTA.qml"
+APP_TITLE               = "Tomato, rather than Apple"
+APP_QML_PATH            = "./qml/TRTA.qml"
 
 # Strings
-STR_BTN_START 			= "Start"
-STR_BTN_PAUSE 			= "Pause"
-STR_BTN_RESET 			= "Reset"
-STR_PHASE_WORK 			= "Work"
-STR_PHASE_BREAK 		= "Break"
-STR_PHASE_LONGBREAK 	= "Long break"
-STR_PHASE_NONE 			= "" # finished or reset
+STR_BTN_START           = "Start"
+STR_BTN_PAUSE           = "Pause"
+STR_BTN_RESET           = "Reset"
+STR_PHASE_WORK          = "Work"
+STR_PHASE_BREAK         = "Break"
+STR_PHASE_LONGBREAK     = "Long break"
+STR_PHASE_NONE          = "" # finished or reset
 
 
 class TRTAQtQuick(QtDeclarative.QDeclarativeView):
@@ -39,7 +39,7 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
         self.setResizeMode(QtDeclarative.QDeclarativeView.SizeRootObjectToView)
         screen = QtGui.QDesktopWidget().screenGeometry()
         self.move((screen.width() / 2) - (self.frameSize().width() / 2), \
-        	(screen.height() / 2) - (self.frameSize().height() / 2)) 
+            (screen.height() / 2) - (self.frameSize().height() / 2))
 
         # Notification GUI
         self.notification = Notification.Notification()
@@ -79,7 +79,7 @@ class TRTAQtQuick(QtDeclarative.QDeclarativeView):
             self.tickFetcher.finish()
         self.notification.close()
 
-    @QtCore.Slot()    
+    @QtCore.Slot()
     def start(self):
         if self.tickGenerator is None:
             self.tickGenerator = Timer.TickGenerator(self.queue)
