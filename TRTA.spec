@@ -21,6 +21,13 @@ onefile = True
 # DO NOT MODIFY BELOW #
 #######################
 
+import sys
+
+if sys.platform == 'win32':
+  exe_name = 'TRTA.exe'
+else:
+  exe_name = 'TRTA'
+
 resources = [
               (os.path.join('qml', 'TRTA.qml'), os.path.join('qml', 'TRTA.qml'), 'DATA'),
               (os.path.join('qml', 'Button.qml'), os.path.join('qml', 'Button.qml'), 'DATA'),
@@ -56,7 +63,7 @@ if onefile:
             a.zipfiles,
             a.datas,
             resources,
-            name='TRTA.exe',
+            name=exe_name,
             debug=False,
             strip=None,
             upx=True,
@@ -65,7 +72,7 @@ else:
   exe = EXE(pyz,
               a.scripts,
               exclude_binaries=True,
-              name='TRTA.exe',
+              name=exe_name,
               debug=False,
               strip=None,
               upx=True,
