@@ -68,6 +68,10 @@ if onefile:
             strip=None,
             upx=True,
             console=False)
+  if sys.platform == 'darwin':
+    app = BUNDLE(exe,
+                  name='TRTA.app',
+                  icon=None)
 else:
   exe = EXE(pyz,
               a.scripts,
