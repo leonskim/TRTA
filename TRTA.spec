@@ -38,8 +38,8 @@ resources = [
               (os.path.join('wav', 'notify.wav'), os.path.join('wav', 'notify.wav'), 'DATA')
              ]
 
-a = Analysis(['d:/d3vi1/Development/Python/TRTA/TRTA.py'],
-             pathex=['c:\\Python27\\Scripts'],
+a = Analysis(['TRTA.py'],
+             pathex=[],
              hiddenimports=[],
              hookspath=None,
              runtime_hooks=None)
