@@ -25,8 +25,14 @@ import sys
 
 if sys.platform == 'win32':
   exe_name = 'TRTA.exe'
+  icon_image = os.path.join('images', 'TRTA.ico')
 else:
   exe_name = 'TRTA'
+  if sys.platform == 'darwin':
+    icon_image = os.path.join('images', 'TRTA.icns')
+  else:
+    icon_image = None
+
 
 resources = [
               (os.path.join('qml', 'TRTA.qml'), os.path.join('qml', 'TRTA.qml'), 'DATA'),
@@ -64,6 +70,7 @@ if onefile:
             a.datas,
             resources,
             name=exe_name,
+            icon=icon_image,
             debug=False,
             strip=None,
             upx=True,
@@ -71,7 +78,7 @@ if onefile:
   if sys.platform == 'darwin':
     app = BUNDLE(exe,
                   name='TRTA.app',
-                  icon=None)
+                  icon=icon_image)
 else:
   exe = EXE(pyz,
               a.scripts,
