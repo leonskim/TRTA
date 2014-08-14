@@ -79,6 +79,12 @@ if onefile:
     app = BUNDLE(exe,
                   name='TRTA.app',
                   icon=icon_image)
+    shutil.copy(
+                os.path.join('images', 'TRTA.icns'),
+                os.path.join('dist', 'TRTA.app', 'Contents', 'Resources', 'TRTA.icns')) 
+    shutil.copy(
+                os.path.join('conf', 'qt.conf'),
+                os.path.join('dist', 'TRTA.app', 'Contents', 'Resources', 'qt.conf')) 
 else:
   exe = EXE(pyz,
               a.scripts,
