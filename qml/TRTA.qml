@@ -19,19 +19,19 @@ Rectangle {
     function setPhase(now) {
         if (now == "w") { 
             phase.source = "../images/phase_work.png"
-            gauge_ani(135, 1000)
+            gauge_ani(138, 1000)
         }
         else if (now == "b") { 
             phase.source = "../images/phase_break.png"
-            gauge_ani(-100, 500)
+            gauge_ani(-97, 500)
         }
         else if (now == "l") { 
             phase.source = "../images/phase_long_break.png"
-            gauge_ani(17, 700)
+            gauge_ani(20, 700)
         }
         else { 
             phase.source = "../images/phase_ready.png"
-            gauge_ani(-157, 1000)
+            gauge_ani(-154, 1000)
         }
 
         phaseOpacityAni.running = true
@@ -138,13 +138,13 @@ Rectangle {
         smooth: true
 
         Component.onCompleted: { 
-            gauge_ani(-157, 2000)
+            gauge_ani(-154, 2000)
         }
     }
 
     Image {
         id: phase
-        x: 102
+        x: 105
         y: 208
         width: 93
         height: 24
@@ -165,7 +165,7 @@ Rectangle {
     Progress {
         id: progress
         objectName: "progress"
-        x: 110
+        x: 112
         y: 201
     }
     
